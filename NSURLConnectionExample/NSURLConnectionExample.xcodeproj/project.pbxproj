@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40E9FEB177A8E7900692CB2 /* PTThreadDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */; };
+		F40E9FEC177A8E7900692CB2 /* PTNormalDownloaler.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E9FEA177A8E6E00692CB2 /* PTNormalDownloaler.m */; };
 		F44D2A4517798A5C00B48C77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44D2A4417798A5C00B48C77 /* Foundation.framework */; };
 		F44D2A4717798A5C00B48C77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44D2A4617798A5C00B48C77 /* CoreGraphics.framework */; };
 		F44D2A4917798A5C00B48C77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44D2A4817798A5C00B48C77 /* UIKit.framework */; };
@@ -21,7 +23,6 @@
 		F44D2A6617798A5C00B48C77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44D2A4817798A5C00B48C77 /* UIKit.framework */; };
 		F44D2A6E17798A5C00B48C77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44D2A6C17798A5C00B48C77 /* InfoPlist.strings */; };
 		F44D2A7017798A5C00B48C77 /* NSURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D2A6F17798A5C00B48C77 /* NSURLConnectionExampleTests.m */; };
-		F44D2A7D17798BAF00B48C77 /* PTURLDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D2A7C17798B5600B48C77 /* PTURLDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F40E9FE7177A8E5800692CB2 /* PTThreadDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTThreadDownloader.h; sourceTree = "<group>"; };
+		F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTThreadDownloader.m; sourceTree = "<group>"; };
+		F40E9FE9177A8E6E00692CB2 /* PTNormalDownloaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTNormalDownloaler.h; sourceTree = "<group>"; };
+		F40E9FEA177A8E6E00692CB2 /* PTNormalDownloaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTNormalDownloaler.m; sourceTree = "<group>"; };
 		F44D2A4117798A5C00B48C77 /* NSURLConnectionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSURLConnectionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44D2A4417798A5C00B48C77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F44D2A4617798A5C00B48C77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,8 +59,6 @@
 		F44D2A6B17798A5C00B48C77 /* NSURLConnectionExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSURLConnectionExampleTests-Info.plist"; sourceTree = "<group>"; };
 		F44D2A6D17798A5C00B48C77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44D2A6F17798A5C00B48C77 /* NSURLConnectionExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLConnectionExampleTests.m; sourceTree = "<group>"; };
-		F44D2A7B17798B5600B48C77 /* PTURLDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTURLDownloader.h; sourceTree = "<group>"; };
-		F44D2A7C17798B5600B48C77 /* PTURLDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTURLDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +123,10 @@
 				F44D2A5617798A5C00B48C77 /* Main.storyboard */,
 				F44D2A5917798A5C00B48C77 /* PTViewController.h */,
 				F44D2A5A17798A5C00B48C77 /* PTViewController.m */,
-				F44D2A7B17798B5600B48C77 /* PTURLDownloader.h */,
-				F44D2A7C17798B5600B48C77 /* PTURLDownloader.m */,
+				F40E9FE9177A8E6E00692CB2 /* PTNormalDownloaler.h */,
+				F40E9FEA177A8E6E00692CB2 /* PTNormalDownloaler.m */,
+				F40E9FE7177A8E5800692CB2 /* PTThreadDownloader.h */,
+				F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */,
 				F44D2A5C17798A5C00B48C77 /* Images.xcassets */,
 				F44D2A4B17798A5C00B48C77 /* Supporting Files */,
 			);
@@ -255,7 +260,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44D2A7D17798BAF00B48C77 /* PTURLDownloader.m in Sources */,
+				F40E9FEB177A8E7900692CB2 /* PTThreadDownloader.m in Sources */,
+				F40E9FEC177A8E7900692CB2 /* PTNormalDownloaler.m in Sources */,
 				F44D2A5517798A5C00B48C77 /* PTAppDelegate.m in Sources */,
 				F44D2A5B17798A5C00B48C77 /* PTViewController.m in Sources */,
 				F44D2A5117798A5C00B48C77 /* main.m in Sources */,
@@ -461,6 +467,7 @@
 				F44D2A7517798A5C00B48C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F44D2A7617798A5C00B48C77 /* Build configuration list for PBXNativeTarget "NSURLConnectionExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				F44D2A7817798A5C00B48C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

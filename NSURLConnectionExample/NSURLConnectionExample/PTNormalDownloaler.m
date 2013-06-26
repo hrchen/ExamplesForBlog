@@ -1,15 +1,14 @@
 //
-//  PTURLDownloader.m
+//  PTNormalDownloaler.m
 //  NSURLConnectionExample
 //
-//  Created by Haoran Chen on 6/25/13.
+//  Created by Haoran Chen on 6/26/13.
 //  Copyright (c) 2013 KiloApp. All rights reserved.
 //
 
-#import "PTURLDownloader.h"
+#import "PTNormalDownloaler.h"
 
-@interface PTURLDownloader()
-
+@interface PTNormalDownloaler ()
 @property (nonatomic, readwrite, retain) NSURL *URL;
 @property(nonatomic, readwrite, retain) NSMutableData* responseData;
 @property(nonatomic, readwrite, retain) NSURLConnection* connection;
@@ -19,8 +18,7 @@
 
 @end
 
-@implementation PTURLDownloader
-
+@implementation PTNormalDownloaler
 
 - (void)setCompletionBlockWithSuccess:(void (^)(id responseData))success
                               failure:(void (^)(NSError *error))failure
@@ -29,15 +27,11 @@
     self.completionBlock = ^ {
         if (weakSelf.error) {
             if (failure) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failure(weakSelf.error);
-                });
+                failure(weakSelf.error);
             }
         } else {
             if (success) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    success(weakSelf.responseData);
-                });
+                success(weakSelf.responseData);
             }
         }
     };
@@ -49,20 +43,21 @@
               failure:(void (^)(NSError *error))failure
 {
     NSLog(@"create downloader in main thread?: %d", [NSThread isMainThread]);
-    PTURLDownloader *downloader = [[PTURLDownloader alloc] init];
+    PTNormalDownloaler *downloader = [[PTNormalDownloaler alloc] init];
     downloader.URL = URL;
     downloader.timeoutInterval = timeoutInterval;
     [downloader setCompletionBlockWithSuccess:success failure:failure];
     
     //Start on main thread
-    [downloader performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
+    //[downloader performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
     
-    //Kick start on GCD global queue
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
-//        [downloader start];
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-//        
-//    });
+    //start on GCD global queue
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
+        [downloader start];
+        NSLog(@"current worker thread: %@", [NSThread currentThread]);
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        NSLog(@"exit worker thread");
+    });
     
     return downloader;
 }

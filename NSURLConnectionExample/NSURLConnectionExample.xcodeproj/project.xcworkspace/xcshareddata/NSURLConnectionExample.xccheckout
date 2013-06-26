@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D137CB6D-827F-4F22-8B15-DFCB44571487</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NSURLConnectionExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BC83E2B7-E7C2-455C-B630-57628607287D</key>
+		<string>ssh://github.com/hrchen/ExamplesForBlog.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NSURLConnectionExample/NSURLConnectionExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BC83E2B7-E7C2-455C-B630-57628607287D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/hrchen/ExamplesForBlog.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BC83E2B7-E7C2-455C-B630-57628607287D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC83E2B7-E7C2-455C-B630-57628607287D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ExamplesForBlog</string>
+		</dict>
+	</array>
+</dict>
+</plist>

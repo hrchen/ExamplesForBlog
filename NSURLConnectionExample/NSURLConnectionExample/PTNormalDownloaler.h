@@ -1,8 +1,8 @@
 //
-//  PTURLDownloader.h
+//  PTNormalDownloaler.h
 //  NSURLConnectionExample
 //
-//  Created by Haoran Chen on 6/25/13.
+//  Created by Haoran Chen on 6/26/13.
 //  Copyright (c) 2013 KiloApp. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 typedef void (^completionBlock)();
 
-@interface PTURLDownloader : NSObject
+@interface PTNormalDownloaler : NSObject
 
 @property (nonatomic, readonly, retain) NSURL *URL;
 @property(nonatomic, readonly, retain) NSMutableData* responseData;
@@ -26,5 +26,6 @@ typedef void (^completionBlock)();
 
 - (void)setCompletionBlockWithSuccess:(void (^)(id responseData))success
                               failure:(void (^)(NSError *error))failure;
+
 
 @end
