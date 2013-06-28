@@ -82,7 +82,7 @@
 - (void)start
 {
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:self.URL
-                                                                cachePolicy:NSURLCacheStorageNotAllowed
+                                                                cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                             timeoutInterval:self.timeoutInterval];
     [request setHTTPMethod: @"GET"];
     
