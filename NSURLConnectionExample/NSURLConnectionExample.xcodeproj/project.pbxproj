@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADB86C77177F613700E9AEC6 /* PTOperationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB86C76177F612B00E9AEC6 /* PTOperationDownloader.m */; };
 		F40E9FEB177A8E7900692CB2 /* PTThreadDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */; };
 		F40E9FEC177A8E7900692CB2 /* PTNormalDownloaler.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E9FEA177A8E6E00692CB2 /* PTNormalDownloaler.m */; };
 		F44D2A4517798A5C00B48C77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44D2A4417798A5C00B48C77 /* Foundation.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ADB86C75177F612B00E9AEC6 /* PTOperationDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTOperationDownloader.h; sourceTree = "<group>"; };
+		ADB86C76177F612B00E9AEC6 /* PTOperationDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTOperationDownloader.m; sourceTree = "<group>"; };
 		F40E9FE7177A8E5800692CB2 /* PTThreadDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTThreadDownloader.h; sourceTree = "<group>"; };
 		F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTThreadDownloader.m; sourceTree = "<group>"; };
 		F40E9FE9177A8E6E00692CB2 /* PTNormalDownloaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTNormalDownloaler.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				F40E9FEA177A8E6E00692CB2 /* PTNormalDownloaler.m */,
 				F40E9FE7177A8E5800692CB2 /* PTThreadDownloader.h */,
 				F40E9FE8177A8E5800692CB2 /* PTThreadDownloader.m */,
+				ADB86C75177F612B00E9AEC6 /* PTOperationDownloader.h */,
+				ADB86C76177F612B00E9AEC6 /* PTOperationDownloader.m */,
 				F44D2A5C17798A5C00B48C77 /* Images.xcassets */,
 				F44D2A4B17798A5C00B48C77 /* Supporting Files */,
 			);
@@ -260,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB86C77177F613700E9AEC6 /* PTOperationDownloader.m in Sources */,
 				F40E9FEB177A8E7900692CB2 /* PTThreadDownloader.m in Sources */,
 				F40E9FEC177A8E7900692CB2 /* PTNormalDownloaler.m in Sources */,
 				F44D2A5517798A5C00B48C77 /* PTAppDelegate.m in Sources */,

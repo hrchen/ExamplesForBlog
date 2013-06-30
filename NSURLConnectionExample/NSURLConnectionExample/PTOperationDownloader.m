@@ -1,14 +1,14 @@
 //
-//  PTThreadDownloader.m
+//  PTOperationDownloader.m
 //  NSURLConnectionExample
 //
-//  Created by Haoran Chen on 6/26/13.
+//  Created by Haoran Chen on 6/30/13.
 //  Copyright (c) 2013 KiloApp. All rights reserved.
 //
 
-#import "PTThreadDownloader.h"
+#import "PTOperationDownloader.h"
 
-@interface PTThreadDownloader ()
+@interface PTOperationDownloader()
 
 @property (nonatomic, readwrite, retain) NSURL *URL;
 @property(nonatomic, readwrite, retain) NSMutableData* responseData;
@@ -16,11 +16,22 @@
 @property(nonatomic, readwrite, assign) NSTimeInterval timeoutInterval;
 @property(nonatomic, readwrite, copy) completionBlock completionBlock;
 @property(nonatomic, readwrite, retain) NSError *error;
-
+@property(atomic, readwrite, assign) BOOL finished;
+@property(atomic, readwrite, assign) BOOL executing;
+@property(nonatomic, readwrite, strong) NSRecursiveLock *lock;
 @end
 
-@implementation PTThreadDownloader
+@implementation PTOperationDownloader
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.lock = [[NSRecursiveLock alloc] init];
+        self.lock.name = @"com.kiloapp.lock";
+    }
+    return self;
+}
 
 + (void) __attribute__((noreturn)) networkEntry:(id)__unused object
 {
@@ -46,9 +57,11 @@
     return _networkThread;
 }
 
+
 - (void)setCompletionBlockWithSuccess:(void (^)(id responseData))success
                               failure:(void (^)(NSError *error))failure
 {
+    [self.lock lock];
     __weak typeof(self) weakSelf = self;
     self.completionBlock = ^ {
         if (weakSelf.error) {
@@ -62,6 +75,7 @@
             }
         }
     };
+    [self.lock unlock];
 }
 
 + (id)downloadWithURL:(NSURL *)URL
@@ -70,18 +84,37 @@
               failure:(void (^)(NSError *error))failure
 {
     NSLog(@"create downloader in main thread?: %d", [NSThread isMainThread]);
-    PTThreadDownloader *downloader = [[PTThreadDownloader alloc] init];
+    PTOperationDownloader *downloader = [[PTOperationDownloader alloc] init];
     downloader.URL = URL;
     downloader.timeoutInterval = timeoutInterval;
     [downloader setCompletionBlockWithSuccess:success failure:failure];
-        
-    [downloader performSelector:@selector(start) onThread:[[self class] networkThread] withObject:nil waitUntilDone:NO];
+    
+    
     
     return downloader;
 }
 
 - (void)start
 {
+    [self.lock lock];
+    if ([self isCancelled])
+    {
+        [self willChangeValueForKey:@"isFinished"];
+        self.finished = YES;
+        [self didChangeValueForKey:@"isFinished"];
+        return;
+    }
+    
+    [self willChangeValueForKey:@"isExecuting"];
+    [self performSelector:@selector(operationDidStart) onThread:[[self class] networkThread] withObject:nil waitUntilDone:NO];
+    self.executing = YES;
+    [self didChangeValueForKey:@"isExecuting"];
+    [self.lock unlock];
+}
+
+- (void)operationDidStart
+{
+    [self.lock lock];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:self.URL
                                                                 cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                             timeoutInterval:self.timeoutInterval];
@@ -92,15 +125,46 @@
                                              startImmediately:NO];
     [self.connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     [self.connection start];
+    [self.lock unlock];
+}
+
+- (void)operationDidFinish
+{
+    [self.lock lock];
+    [self willChangeValueForKey:@"isFinished"];
+    [self willChangeValueForKey:@"isExecuting"];
+    
+    self.executing = NO;
+    self.finished = YES;
+    
+    [self didChangeValueForKey:@"isExecuting"];
+    [self didChangeValueForKey:@"isFinished"];
+    [self.lock unlock];
 }
 
 - (void)cancel
 {
+    [self.lock lock];
+    [super cancel];
     if (self.connection)
     {
         [self.connection cancel];
         self.connection = nil;
     }
+    
+    [self.lock unlock];
+}
+
+- (BOOL)isConcurrent {
+    return YES;
+}
+
+- (BOOL)isExecuting {
+    return self.executing;
+}
+
+- (BOOL)isFinished {
+    return self.finished;
 }
 
 #pragma mark - NSURLConnection Delegate
@@ -135,6 +199,7 @@
     NSLog(@"connectionDidFinishLoading in main thread?: %d", [NSThread isMainThread]);
     self.connection = nil;
     self.completionBlock();
+    [self operationDidFinish];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -143,6 +208,7 @@
     self.responseData = nil;
     self.error = error;
     self.completionBlock();
+    [self operationDidFinish];
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse

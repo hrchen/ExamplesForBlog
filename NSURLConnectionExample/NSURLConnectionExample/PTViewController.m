@@ -9,6 +9,7 @@
 #import "PTViewController.h"
 #import "PTNormalDownloaler.h"
 #import "PTThreadDownloader.h"
+#import "PTOperationDownloader.h"
 
 @interface PTViewController ()
 
@@ -58,6 +59,22 @@
 //                                      failure:^(NSError *error){
 //                                          NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
 //                                      }];
+    
+    
+    //Use PTOperationDownloader
+//    PTOperationDownloader *downloader = [PTOperationDownloader
+//                                        downloadWithURL:[NSURL URLWithString:URLString]
+//                                        timeoutInterval:15
+//                                        success:^(id responseData){
+//                                            NSLog(@"get data size: %d", [(NSData *)responseData length]);
+//                                            NSLog(@"success block in main thread?: %d", [NSThread isMainThread]);
+//                                        }
+//                                        failure:^(NSError *error){
+//                                            NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
+//                                        }];
+//    
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperation:downloader];NSBlockOperation
     
     NSLog(@"started downloader: %@", downloader.URL.absoluteString);
 }
