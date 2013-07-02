@@ -8,6 +8,7 @@
 
 #import "PTAppDelegate.h"
 #import "PTRunLoopThread.h"
+#import "PTCFRunLoopThread.h"
 #import "PTInputSourceThread.h"
 #import "PTObserverThread.h"
 
@@ -48,13 +49,12 @@
     UIViewController *viewController = [[UIViewController alloc] init];
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
-    
-    //Main thread timer
-    //NSTimer *timer = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(doTimerTaskOnMainThread) userInfo:nil repeats:YES];
-    //[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
+   
     //NSThread subclass and run loop example
     [self launchRunLoopThread];
+    
+    //NSThread with CFRunLoop
+    //[self lauchCFRunLoopThread];
     
     //NSThread with input source
     //[self launchInputSourceThread];
@@ -69,17 +69,19 @@
 {
     PTRunLoopThread *thread = [[PTRunLoopThread alloc] init];
     [thread start];
-//    [self performSelector:@selector(doTaskOnSubThread) onThread:thread withObject:nil waitUntilDone:NO];
+    [self performSelector:@selector(doTaskOnSubThread) onThread:thread withObject:nil waitUntilDone:NO];
+}
+
+- (void)lauchCFRunLoopThread
+{
+    PTCFRunLoopThread *thread = [[PTCFRunLoopThread alloc] init];
+    [thread start];
+    [self performSelector:@selector(doTaskOnSubThread) onThread:thread withObject:nil waitUntilDone:NO];
 }
 
 - (void)doTaskOnSubThread
 {
-    NSLog(@"do some thread task");
-}
-
-- (void)doTimerTaskOnMainThread
-{
-    NSLog(@"do timer work on main thread");
+    NSLog(@"do task on sub thread");
 }
 
 - (void)launchInputSourceThread

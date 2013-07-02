@@ -86,13 +86,13 @@ static int ObserverThreadTaskIndex = 0;
 
 - (void)doTimerTask
 {
-    NSLog(@"do timer task");
+    NSLog(@"do timer task: %d", ObserverThreadTaskIndex);
+    ObserverThreadTaskIndex++;
 }
 
 - (void)doOtherTask
 {
-    NSLog(@"do other task: %d", ObserverThreadTaskIndex);
-    ObserverThreadTaskIndex++;
+    NSLog(@"do other task");
 }
 
 @end

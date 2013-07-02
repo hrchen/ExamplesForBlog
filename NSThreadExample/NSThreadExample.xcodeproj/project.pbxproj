@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F400B89117787B6D00D58151 /* PTObserverThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F400B89017787B5E00D58151 /* PTObserverThread.m */; };
+		F4189DEC1782E5CF001C0429 /* PTCFRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F4189DEB1782E5CF001C0429 /* PTCFRunLoopThread.m */; };
 		F41FDD0B177062D5006EE538 /* PTRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F41FDD0A17706257006EE538 /* PTRunLoopThread.m */; };
 		F41FDD0C177062D5006EE538 /* PTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F41FDD0817706229006EE538 /* PTInputSource.m */; };
 		F48BF732177045A10082371C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48BF731177045A10082371C /* Foundation.framework */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		F400B88F17787B5E00D58151 /* PTObserverThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTObserverThread.h; sourceTree = "<group>"; };
 		F400B89017787B5E00D58151 /* PTObserverThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTObserverThread.m; sourceTree = "<group>"; };
+		F4189DEA1782E5CF001C0429 /* PTCFRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCFRunLoopThread.h; sourceTree = "<group>"; };
+		F4189DEB1782E5CF001C0429 /* PTCFRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCFRunLoopThread.m; sourceTree = "<group>"; };
 		F41FDD0717706229006EE538 /* PTInputSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTInputSource.h; sourceTree = "<group>"; };
 		F41FDD0817706229006EE538 /* PTInputSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTInputSource.m; sourceTree = "<group>"; };
 		F41FDD0917706257006EE538 /* PTRunLoopThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTRunLoopThread.h; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				F48BF741177045A10082371C /* PTAppDelegate.m */,
 				F41FDD0917706257006EE538 /* PTRunLoopThread.h */,
 				F41FDD0A17706257006EE538 /* PTRunLoopThread.m */,
+				F4189DEA1782E5CF001C0429 /* PTCFRunLoopThread.h */,
+				F4189DEB1782E5CF001C0429 /* PTCFRunLoopThread.m */,
 				F41FDD0717706229006EE538 /* PTInputSource.h */,
 				F41FDD0817706229006EE538 /* PTInputSource.m */,
 				F4B9AAFD1771A6B000C72D73 /* PTInputSourceThread.h */,
@@ -261,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F400B89117787B6D00D58151 /* PTObserverThread.m in Sources */,
+				F4189DEC1782E5CF001C0429 /* PTCFRunLoopThread.m in Sources */,
 				F4B9AAFF1771AC1C00C72D73 /* PTInputSourceThread.m in Sources */,
 				F41FDD0B177062D5006EE538 /* PTRunLoopThread.m in Sources */,
 				F41FDD0C177062D5006EE538 /* PTInputSource.m in Sources */,

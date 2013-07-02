@@ -9,8 +9,6 @@
 #import "PTInputSourceThread.h"
 #import "PTInputSource.h"
 
-static int InputSourceThreadTaskIndex = 0;
-
 @interface PTInputSourceThread()
 
 @property (nonatomic, readwrite, retain) RunLoopSource *source;
@@ -42,8 +40,7 @@ static int InputSourceThreadTaskIndex = 0;
 
 - (void)doOtherTask
 {
-    NSLog(@"do other task: %d", InputSourceThreadTaskIndex);
-    InputSourceThreadTaskIndex++;
+    NSLog(@"do other task");
 }
 
 

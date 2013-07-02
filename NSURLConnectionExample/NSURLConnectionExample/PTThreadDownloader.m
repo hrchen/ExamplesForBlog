@@ -28,7 +28,9 @@
         @autoreleasepool
         {
             [[NSRunLoop currentRunLoop] run];
-            NSLog(@"exit worker thread runloop");
+            
+            BOOL ret = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+            NSLog(@"exit worker thread runloop: %d", ret);
         }
     } while (YES);
 }

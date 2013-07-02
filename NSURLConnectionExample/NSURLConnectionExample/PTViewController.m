@@ -37,28 +37,28 @@
     NSString *URLString = @"http://farm7.staticflickr.com/6191/6075294191_4c8ca20409.jpg";
        
     //Use PTNormalDownloaler 
-    PTNormalDownloaler *downloader = [PTNormalDownloaler
-                                      downloadWithURL:[NSURL URLWithString:URLString]
-                                      timeoutInterval:15
-                                              success:^(id responseData){
-                                                  NSLog(@"get data size: %d", [(NSData *)responseData length]);
-                                                  NSLog(@"success block in main thread?: %d", [NSThread isMainThread]);
-                                              }
-                                              failure:^(NSError *error){
-                                                  NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
-                                              }];
-    
-    //Use PTThreadDownloaler
-//    PTThreadDownloader *downloader = [PTThreadDownloader
+//    PTNormalDownloaler *downloader = [PTNormalDownloaler
 //                                      downloadWithURL:[NSURL URLWithString:URLString]
 //                                      timeoutInterval:15
-//                                      success:^(id responseData){
-//                                          NSLog(@"get data size: %d", [(NSData *)responseData length]);
-//                                          NSLog(@"success block in main thread?: %d", [NSThread isMainThread]);
-//                                      }
-//                                      failure:^(NSError *error){
-//                                          NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
-//                                      }];
+//                                              success:^(id responseData){
+//                                                  NSLog(@"get data size: %d", [(NSData *)responseData length]);
+//                                                  NSLog(@"success block in main thread?: %d", [NSThread isMainThread]);
+//                                              }
+//                                              failure:^(NSError *error){
+//                                                  NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
+//                                              }];
+
+    //Use PTThreadDownloaler
+    PTThreadDownloader *downloader = [PTThreadDownloader
+                                      downloadWithURL:[NSURL URLWithString:URLString]
+                                      timeoutInterval:15
+                                      success:^(id responseData){
+                                          NSLog(@"get data size: %d", [(NSData *)responseData length]);
+                                          NSLog(@"success block in main thread?: %d", [NSThread isMainThread]);
+                                      }
+                                      failure:^(NSError *error){
+                                          NSLog(@"failure block in main thread?: %d", [NSThread isMainThread]);
+                                      }];
     
     
     //Use PTOperationDownloader
