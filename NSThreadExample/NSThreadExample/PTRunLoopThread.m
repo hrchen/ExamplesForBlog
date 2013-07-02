@@ -41,8 +41,6 @@ static NSString *CustomRunLoopMode = @"CustomRunLoopMode";
             BOOL ret = [[NSRunLoop currentRunLoop] runMode:CustomRunLoopMode
                                                 beforeDate:[NSDate distantFuture]];
             NSLog(@"exiting runloop.........: %d", ret);
-            
-            //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:10]];
         }
         NSLog(@"finishing thread.........");
      }
