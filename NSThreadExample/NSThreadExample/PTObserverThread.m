@@ -79,8 +79,6 @@ static int ObserverThreadTaskIndex = 0;
             NSLog(@"exiting runloop.........: %d", ret);
         }
         NSLog(@"finishing thread.........");
-        
-        
     }
 }
 

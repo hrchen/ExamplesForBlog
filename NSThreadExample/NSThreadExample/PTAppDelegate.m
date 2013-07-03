@@ -12,6 +12,22 @@
 #import "PTInputSourceThread.h"
 #import "PTObserverThread.h"
 
+void mainRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info)
+{
+    CFStringRef mode = CFRunLoopCopyCurrentMode(CFRunLoopGetMain());
+    NSLog(@"Current main thread run loop mode: %@", (__bridge NSString *)mode);
+    
+    CFArrayRef modeArray = CFRunLoopCopyAllModes(CFRunLoopGetMain());
+    if (CFArrayGetCount(modeArray) > 0)
+    {
+        for (int i = 0; i < CFArrayGetCount(modeArray); i++)
+        {
+            CFStringRef mode = CFArrayGetValueAtIndex(modeArray, i);
+            NSLog(@"Main thread run loop has mode: %@", (__bridge NSString *)mode);
+        }
+    }
+}
+
 @interface PTAppDelegate()
 
 @property (nonatomic, readwrite, strong) NSMutableArray *sources;
@@ -46,7 +62,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    UIViewController *viewController = [[UIViewController alloc] init];
+    UITableViewController *viewController = [[UITableViewController alloc] init];
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
    
@@ -61,6 +77,9 @@
     
     //NSThread with observer
     //[self launchObserverThread];
+    
+    //Add main run loop observer
+    [self addMainRunLoopObserver];
     
     return YES;
 }
@@ -130,6 +149,17 @@
 {
     PTObserverThread *thread = [[PTObserverThread alloc] init];
     [thread start];
+}
+
+- (void)addMainRunLoopObserver
+{
+    CFRunLoopObserverContext  context = {0, (__bridge void *)(self), NULL, NULL, NULL};
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopEntry, YES, 0, &mainRunLoopObserver, &context);
+    if (observer)
+    {
+        CFRunLoopAddObserver(CFRunLoopGetMain(), observer,
+                             kCFRunLoopCommonModes);
+    }
 }
 
 
